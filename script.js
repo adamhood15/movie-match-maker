@@ -17,3 +17,24 @@ fetch(urlLatLon, options)
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
 
+//Unsplash API
+
+const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
+
+// Set up the search query
+const query = 'Mexican Food';
+const apiUrl = `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=${accessKey}`;
+
+// Fetch data from the API endpoint and display the first image
+// ID 'foodIMG' set for image div endpoint, tested and works, but currently not in HTML
+fetch(apiUrl)
+  	.then(response => response.json())
+  	.then(data => {
+    	const image = data.results[0];
+    	const img = document.createElement('img');
+    	img.src = image.urls.regular;
+    	img.alt = image.alt_description;
+    	const foodIMG = document.querySelector('#foodIMG');
+    	foodIMG.appendChild(img);
+  	})
+  	.catch(error => console.log(error));
