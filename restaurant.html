@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
 </head>
-<body>
-    <main>
+<body class="bg-gradient-to-bl from-red-700 to-red-500">
+    <main class="flex flex-col justify-between items-center h-screen">
+        <h1 class="text-center text-2xl mt-10 text-white">Aimless Appetite</h1>
         <!-- Can update all these values when we get the API information uploaded -->
-        <h1>Restaurant Name 
-            <icon id="price">$$$ </icon>
-            <icon id="rating">*****</icon>
-        </h1>
-        <img id="restaurant-photo" src="./assets/images/Placeholder Image.webp">
-        <ul id="restaurant-info">
-            <li id="restaurant-webpage">Website: www.restaurantwebsite.com</li>
-            <li id="restaurant-address">Address: 1100 New Place Houston, TX 77577</li>
-            <li id="restaurant-phone-num">Phone Number: 444-574-5748</li>
-        </ul>
-        <h2>Have a great time!</h2>
-        <button id='try-again-btn' type="button">Let's do that again!</button>
+        <div class="flex flex-wrap flex-col restaurant-card border-2 rounded w-3/4 bg-stone-600">
+            <h2 class="text-lg m-3 text-center text-white">Restaurant Name 
+                <icon id="price">$$$ </icon>
+                <icon id="rating">*****</icon>
+            </h2>
+            <div class="flex flex-col items-center">
+                <img id="restaurant-photo" class='h-32 w-32 m-3'src="./assets/images/Placeholder Image.webp">
+                <ul id="restaurant-info">
+                    <li id="restaurant-webpage" class="p-2 text-white"><span class="font-bold text-white">Website:</span> www.restaurantwebsite.com</li>
+                    <li id="restaurant-address" class="p-2 text-white"><span class="font-bold text-white">Address:</span> 1100 New Place Houston, TX 77577</li>
+                    <li id="restaurant-phone-num" class="p-2 text-white"><span class="font-bold text-white">Phone Number:</span> 444-574-5748</li>
+                </ul>
+            </div>
+        </div>
+
+        <button id='try-again-btn' class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white" type="button">I'm still hungry!</button>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
