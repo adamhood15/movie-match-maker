@@ -1,3 +1,6 @@
+var nameInputEl = $('#name');
+var addressInputEl = $('#address');
+var submitButtonEl = $('#submit');
 
 // Restaurant API
 
