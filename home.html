@@ -9,21 +9,32 @@
     <title>Homepage</title>
 </head>
 
-<body>
-    <div>
-        <H1>Aimless Appetite</H1>
-        <H2>Find your perfect meal.</H2>
-    </div>
+<body class="bg-cover flex items-center h-screen justify-center" style="background-image: url('./assets/images/homepage.jpg')">
+    <div class="bg-stone-600 bg-opacity-50 border-2 rounded w-3/4">
+        <div>
+            <H1 class="text-center text-3xl mt-10 text-white">Aimless Appetite</H1>
+            <H2 class="text-center text-xl mt-10 text-white">Find your perfect meal.</H2>
+        </div>
 
-    <div>
-        <input type="text" placeholder="Enter Address"></input> <!--address text box-->
-        <input type="range" min="1" max="50" value="25" class="slider" id="distanceSlider"> <!--distance slider bar-->
-        <span></span> <!--future display of distance value-->
-        <button type="button">Go</button> <!--Go Button-->
-    </div>
+        <div class="flex flex-col space-y-3 text-center mt-10">
+            <div>
+                <input class="bg-stone-600 text-white rounded p-2 border-2 border-solid border-white" type="text" placeholder="Enter Name"></input> <!--name text box-->
+            </div>
+            <div>
+                <input class="bg-stone-600 text-white rounded p-2 border-2 border-solid border-white" type="text" placeholder="Enter City"></input> <!--address text box-->
+            </div>
+            <div>
+                <input type="range" min="1" max="50" value="25" class="" id="distanceSlider"> <!--distance slider bar-->
+            </div>
+            <label for="distanceSlider" class="mt-10 text-white">Within 25 miles</label> <!--future display of distance value-->
+            <div>
+                <button class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white" type="button">Go</button> <!--Go Button-->
+            </div>
+        </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </div>
 </body>
 
 </html>
