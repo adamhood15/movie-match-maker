@@ -44,6 +44,7 @@ fetch(apiUrl)
   	.catch(error => console.log(error));
 
 
+//Grabs geolocation latitude and longitude for trip advisory api
 function geoAPICall() {
 	const geoAPI = 'http://api.openweathermap.org/geo/1.0/direct?q=pearland&limit=10&appid=a0334750ce53b3a2b2d0193e97ee40fc'
 
@@ -60,3 +61,14 @@ function geoAPICall() {
 }
 
 geoAPICall();
+
+//local storage for the userInput
+var userName = 'Adam';
+
+localStorage.setItem('name', userName);
+
+//Displays the users name on the restaurant HTML page
+addEventListener("DOMContentLoaded", (event) => {
+	$('.closing-text').text(`Get ready to chow down, ${userName}`);
+});
+
