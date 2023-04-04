@@ -2,7 +2,7 @@
 
 
 // latitude and longitude required
-function travelAdvisorAPI(lat, lon) {
+function travelAdvisorAPI(lat, lon, dist) {
 
 	const options = {
 		method: 'GET',
@@ -12,7 +12,7 @@ function travelAdvisorAPI(lat, lon) {
 		}
 	};
 
-var urlLatLon = `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US`;
+var urlLatLon = `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=30&currency=USD&distance=${dist}&open_now=true&lunit=km&lang=en_US&min_rating=3`;
 
 
 fetch(urlLatLon, options)
