@@ -1,6 +1,23 @@
 var nameInputEl = $('#name');
 var addressInputEl = $('#address');
 var submitButtonEl = $('#submit');
+var distance = $('#distanceSlider');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Restaurant API
 
@@ -74,4 +91,5 @@ localStorage.setItem('name', userName);
 addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Get ready to chow down, ${userName}`);
 });
+
 
