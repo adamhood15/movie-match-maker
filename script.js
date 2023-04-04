@@ -1,5 +1,8 @@
-// Restaurant API
+var nameInputEl = $('#name');
+var addressInputEl = $('#address');
+var submitButtonEl = $('#submit');
 
+// Restaurant API
 
 // latitude and longitude required
 function travelAdvisorAPI(lat, lon) {
