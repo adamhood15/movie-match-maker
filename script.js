@@ -1,5 +1,5 @@
-// Restaurant API
 
+// Restaurant API
 
 // latitude and longitude required
 function travelAdvisorAPI(lat, lon) {
