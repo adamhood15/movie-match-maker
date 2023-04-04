@@ -1,6 +1,6 @@
-var nameInputEl = $('#name');
-var addressInputEl = $('#address');
-var submitButtonEl = $('#submit');
+const nameInputEl = $('#name');
+const addressInputEl = $('#address');
+const submitButtonEl = $('#submit');
 
 // Restaurant API
 
@@ -42,7 +42,7 @@ fetch(apiUrl)
     	img.src = image.urls.regular;
     	img.alt = image.alt_description;
     	const foodIMG = document.querySelector('#foodIMG');
-    	// foodIMG.appendChild(img);
+    	foodIMG.appendChild(img);
   	})
   	.catch(error => console.log(error));
 
