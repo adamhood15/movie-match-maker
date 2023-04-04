@@ -1,21 +1,25 @@
 // Restaurant API
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
-		'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-	}
-};
+
 
 // latitude and longitude required
+function travelAdvisorAPI(lat, lon) {
 
-var urlLatLon = 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=12.91285&longitude=100.87808&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US';
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
+			'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+		}
+	};
+
+var urlLatLon = `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US`;
 
 
 fetch(urlLatLon, options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
+}
 
 //Unsplash API
 
@@ -35,6 +39,24 @@ fetch(apiUrl)
     	img.src = image.urls.regular;
     	img.alt = image.alt_description;
     	const foodIMG = document.querySelector('#foodIMG');
-    	foodIMG.appendChild(img);
+    	// foodIMG.appendChild(img);
   	})
   	.catch(error => console.log(error));
+
+
+function geoAPICall() {
+	const geoAPI = 'http://api.openweathermap.org/geo/1.0/direct?q=pearland&limit=10&appid=a0334750ce53b3a2b2d0193e97ee40fc'
+
+	fetch(geoAPI) 
+		.then(response => response.json())
+		.then(data => {
+			var lat = data[0].lat;
+			var lon = data[0].lon;
+
+			travelAdvisorAPI(lat, lon);
+		})
+		.catch(err => console.error(err));
+
+}
+
+geoAPICall();
