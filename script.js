@@ -1,6 +1,19 @@
+// home html
 const nameInputEl = $('#name');
 const addressInputEl = $('#address');
-const submitButtonEl = $('#submit');
+const submitBtnEl = $('#submit');
+const distanceEl = $('#distanceSlider')
+
+// resturant html
+const restaurantPhotoEl = $('#restaurant-photo');
+const restaurantInfoEl = $('#restaurant-info');
+const restaurantWebpageEl = $('#restaurant-webpage');
+const restaurantAddressEl = $('#restaurant-address');
+const restaurantPhoneNumEl = $('#restaurant-phone-num');
+const tryAgainBtnEl = $('#try-again-btn');
+const priceEl = $('#price');
+const ratingEl = $('#rating');
+
 
 // Restaurant API
 
