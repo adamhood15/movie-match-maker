@@ -1,6 +1,19 @@
-var nameInputEl = $('#name');
-var addressInputEl = $('#address');
-var submitButtonEl = $('#submit');
+// home html
+const nameInputEl = $('#name');
+const addressInputEl = $('#address');
+const submitBtnEl = $('#submit');
+const distanceEl = $('#distanceSlider')
+
+// resturant html
+const restaurantPhotoEl = $('#restaurant-photo');
+const restaurantInfoEl = $('#restaurant-info');
+const restaurantWebpageEl = $('#restaurant-webpage');
+const restaurantAddressEl = $('#restaurant-address');
+const restaurantPhoneNumEl = $('#restaurant-phone-num');
+const tryAgainBtnEl = $('#try-again-btn');
+const priceEl = $('#price');
+const ratingEl = $('#rating');
+
 
 // Restaurant API
 
@@ -42,7 +55,7 @@ fetch(apiUrl)
     	img.src = image.urls.regular;
     	img.alt = image.alt_description;
     	const foodIMG = document.querySelector('#foodIMG');
-    	// foodIMG.appendChild(img);
+    	foodIMG.appendChild(img);
   	})
   	.catch(error => console.log(error));
 
