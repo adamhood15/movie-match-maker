@@ -9,11 +9,11 @@
     <title>Homepage</title>
 </head>
 
-<body class="bg-cover flex items-center h-screen justify-center" style="background-image: url('./assets/images/homepage.jpg')">
+<body class="bg-cover flex items-center h-screen justify-center" style="background-image: url('./assets/images/movieseats.jpg')">
     <div class="bg-stone-600 bg-opacity-50 border-2 rounded w-3/4">
         <div>
-            <H1 class="text-center text-3xl mt-10 text-white">Aimless Appetite</H1>
-            <H2 class="text-center text-xl mt-10 text-white">Find your perfect meal.</H2>
+            <H1 class="text-center text-3xl mt-10 text-white">Movie Match Maker</H1>
+            <H2 class="text-center text-xl mt-10 text-white">Find your perfect film.</H2>
         </div>
 
         <div class="flex flex-col space-y-3 text-center mt-10">
@@ -21,12 +21,14 @@
                 <input id="name" class="bg-stone-600 text-white rounded p-2 border-2 border-solid border-white" type="text" placeholder="Enter Name"></input> <!--name text box-->
             </div>
             <div>
-                <input id="address" class="bg-stone-600 text-white rounded p-2 border-2 border-solid border-white" type="text" placeholder="Enter City"></input> <!--address text box-->
+                <select id="genreDropdown">
+                    <option value="">Select a genre</option>
+                </select>
             </div>
             <div>
-                <input type="range" min="1" max="50" value="25" class="" id="distanceSlider"> <!--distance slider bar-->
+                <input type="range" min="1950" max="2023" value="1986" class="" id="distanceSlider"> <!--distance slider bar-->
             </div>
-            <label for="distanceSlider" id="distanceDisplay" class="mt-10 text-white">Within 25 miles</label> <!--future display of distance value-->
+            <label for="distanceSlider" id="distanceDisplay" class="mt-10 text-white">Movies from 1986-Present</label> <!--future display of distance value-->
             <div>
                 <button id="submit" class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white" type="button">Go</button> <!--Go Button-->
             </div>
