@@ -1,0 +1,48 @@
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, h1, h2,
+h3, h4, p, figure,
+blockquote, dl, dd {
+    margin: 0;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+button, input, 
+textarea, select {
+    border: none;
+    outline: none;
+}
+
+button, input,
+textarea, select,
+div, span {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
