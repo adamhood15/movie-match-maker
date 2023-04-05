@@ -26,7 +26,7 @@ $(document).ready(function () {
 		localStorage.setItem('name', nameInputEl.val());
 		localStorage.setItem('year', distanceEl.val());
 		localStorage.setItem('genre', genreEl.val());
-		window.location.href = "genre.html";
+		window.location.href = "final.html";
 	});
 });
 
