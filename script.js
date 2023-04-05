@@ -73,11 +73,6 @@ function movieAPICall() {
 			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
 		}
 	};
-	
-	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/titleTypes', optionsc)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
 
 		const optionsd = {
 			method: 'GET',
@@ -125,7 +120,7 @@ localStorage.setItem('name', userName);
 
 //Displays the users name on the restaurant HTML page
 addEventListener("DOMContentLoaded", (event) => {
-	$('.closing-text').text(`Get ready to chow down, ${userName}`);
+	$('.closing-text').text(`Enjoy your movie, ${userName}`);
 });
 
 
