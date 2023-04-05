@@ -53,14 +53,14 @@ function movieAPICall() {
 		.then(response => console.log(response))
 		.catch(err => console.error(err));
 
-	const optionsb = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
-
+		const optionsb = {
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+				'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+			}
+		};
+	
 	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/lists', optionsb)
 		.then(response => response.json())
 		.then(response => console.log(response))
@@ -73,25 +73,29 @@ function movieAPICall() {
 			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
 		}
 	};
-
+	
 	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/titleTypes', optionsc)
 		.then(response => response.json())
 		.then(response => console.log(response))
 		.catch(err => console.error(err));
 
-	const optionsd = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
+		const optionsd = {
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+				'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+			}
+		};
 
-	fetch('https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&list=top_rated_250&sort=year.decr&startYear=2000', optionsd)
-		.then(response => response.json())
-		.then(response => randomMovie(response))
-		.catch(err => console.error(err));
-}
+		var genre = 'Horror';
+		var year = '2019';
+
+		fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}`, optionsd)
+			.then(response => response.json())
+			.then(response => console.log(response))
+			.catch(err => console.error(err));
+
+
 //Unsplash API
 
 const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
