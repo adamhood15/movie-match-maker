@@ -32,11 +32,12 @@ $(document).ready(function () {
 
 
 function randomMovie(movies) {
-	console.log(movies)
-	Math.round(Math.random(length))
+	var index = Math.floor(Math.random()*movies.results.length)
+	var choosenMovie = movies.results[index].titleText.text
+	console.log(choosenMovie)
 }
 
-movieAPICall()
+movieAPICall();
 
 function movieAPICall() {
 	const options = {
