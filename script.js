@@ -39,6 +39,13 @@ $(document).ready(function () {
 		text: option
 		}));
 	});
+
+	function randomMovie(movies) {
+		var index = Math.floor(Math.random()*movies.results.length)
+		var choosenMovie = movies.results[index].titleText.text
+		console.log(choosenMovie)
+	}	
+
 movieAPICall();
 
 function movieAPICall() {
