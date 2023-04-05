@@ -15,6 +15,46 @@ const priceEl = $('#price');
 const ratingEl = $('#rating');
 
 
+
+
+//go button
+$(document).ready(function() {
+	distanceEl.on("input", function() {
+		var sliderValue = $(this).val();
+		$('#distanceDisplay').text("Within " + sliderValue + " miles");
+		});
+	submitBtnEl.on("click", function() {
+		localStorage.setItem('name', nameInputEl.val());
+		localStorage.setItem('address', addressInputEl.val());
+		localStorage.setItem('distance', distanceEl.val());
+		window.location.href = "cuisine.html";
+	});
+	});
+
+
+
+
+
+
+
+//go button
+$(document).ready(function() {
+	distanceEl.on("input", function() {
+		var sliderValue = $(this).val();
+		$('#distanceDisplay').text("Within " + sliderValue + " miles");
+		});
+	submitBtnEl.on("click", function() {
+		localStorage.setItem('name', nameInputEl.val());
+		localStorage.setItem('address', addressInputEl.val());
+		localStorage.setItem('distance', distanceEl.val());
+		window.location.href = "cuisine.html";
+	});
+	});
+
+
+
+
+
 const options = {
 	method: 'GET',
 	headers: {
