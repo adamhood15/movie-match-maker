@@ -16,7 +16,6 @@ const ratingEl = $('#rating');
 
 
 
-
 //go button
 $(document).ready(function() {
 	distanceEl.on("input", function() {
@@ -35,28 +34,57 @@ $(document).ready(function() {
 
 
 
-// Restaurant API
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+	}
+};
 
-// latitude and longitude required
-function travelAdvisorAPI(lat, lon) {
-
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
-			'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-		}
-	};
-
-var urlLatLon = `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${lat}&longitude=${lon}&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US`;
-
-
-fetch(urlLatLon, options)
+fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/genres', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
 	.catch(err => console.error(err));
-}
 
+	const optionsb = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+		}
+	};
+	
+	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/lists', optionsb)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
+
+		const optionsc = {
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+				'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+			}
+		};
+		
+		fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/titleTypes', optionsc)
+			.then(response => response.json())
+			.then(response => console.log(response))
+			.catch(err => console.error(err));
+
+			const optionsd = {
+				method: 'GET',
+				headers: {
+					'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+					'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+				}
+			};
+			
+			fetch('https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&list=top_rated_250&sort=year.decr&startYear=2000', optionsd)
+				.then(response => response.json())
+				.then(response => console.log(response))
+				.catch(err => console.error(err));
 //Unsplash API
 
 const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
@@ -79,25 +107,6 @@ fetch(apiUrl)
   	})
   	.catch(error => console.log(error));
 
-
-//Grabs geolocation latitude and longitude for trip advisory api
-function geoAPICall() {
-	const geoAPI = 'http://api.openweathermap.org/geo/1.0/direct?q=pearland&limit=10&appid=a0334750ce53b3a2b2d0193e97ee40fc'
-
-	fetch(geoAPI) 
-		.then(response => response.json())
-		.then(data => {
-			var lat = data[0].lat;
-			var lon = data[0].lon;
-
-			travelAdvisorAPI(lat, lon);
-		})
-		.catch(err => console.error(err));
-
-}
-
-geoAPICall();
-
 //local storage for the userInput
 var userName = 'Adam';
 
@@ -107,4 +116,5 @@ localStorage.setItem('name', userName);
 addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Get ready to chow down, ${userName}`);
 });
+
 
