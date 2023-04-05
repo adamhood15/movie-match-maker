@@ -17,20 +17,29 @@ const ratingEl = $('#rating');
 
 
 //go button
-$(document).ready(function() {
-	distanceEl.on("input", function() {
+$(document).ready(function () {
+	distanceEl.on("input", function () {
 		var sliderValue = $(this).val();
 		$('#distanceDisplay').text("Within " + sliderValue + " miles");
-		});
-	submitBtnEl.on("click", function() {
+	});
+	submitBtnEl.on("click", function () {
 		localStorage.setItem('name', nameInputEl.val());
 		localStorage.setItem('address', addressInputEl.val());
 		localStorage.setItem('distance', distanceEl.val());
 		window.location.href = "cuisine.html";
 	});
-	});
+});
 
-//API for movies
+
+function randomMovie(movies) {
+	var index = Math.floor(Math.random()*movies.results.length)
+	var choosenMovie = movies.results[index].titleText.text
+	console.log(choosenMovie)
+}
+
+movieAPICall();
+
+function movieAPICall() {
 	const options = {
 		method: 'GET',
 		headers: {
@@ -83,10 +92,10 @@ $(document).ready(function() {
 
 		fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}`, optionsd)
 			.then(response => response.json())
-			.then(response => console.log(response))
+			.then(response => randomMovie(response))
 			.catch(err => console.error(err));
 
-
+	}
 //Unsplash API
 
 const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
@@ -98,16 +107,16 @@ const apiUrl = `https://api.unsplash.com/search/photos?page=1&query=${query}&cli
 // Fetch data from the API endpoint and display the first image
 // ID 'foodIMG' set for image div endpoint, tested and works, but currently not in HTML
 fetch(apiUrl)
-  	.then(response => response.json())
-  	.then(data => {
-    	const image = data.results[0];
-    	const img = document.createElement('img');
-    	img.src = image.urls.regular;
-    	img.alt = image.alt_description;
-    	const foodIMG = document.querySelector('#foodIMG');
-    	foodIMG.appendChild(img);
-  	})
-  	.catch(error => console.log(error));
+	.then(response => response.json())
+	.then(data => {
+		const image = data.results[0];
+		const img = document.createElement('img');
+		img.src = image.urls.regular;
+		img.alt = image.alt_description;
+		const foodIMG = document.querySelector('#foodIMG');
+		foodIMG.appendChild(img);
+	})
+	.catch(error => console.log(error));
 
 //local storage for the userInput
 var userName = 'Adam';
