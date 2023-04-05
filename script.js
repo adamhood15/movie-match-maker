@@ -13,30 +13,32 @@ const restaurantPhoneNumEl = $('#restaurant-phone-num');
 const tryAgainBtnEl = $('#try-again-btn');
 const priceEl = $('#price');
 const ratingEl = $('#rating');
-
+const genreEl = $('#genreDropdown');
 
 
 //go button
 $(document).ready(function () {
 	distanceEl.on("input", function () {
 		var sliderValue = $(this).val();
-		$('#distanceDisplay').text("Within " + sliderValue + " miles");
-	});
-	submitBtnEl.on("click", function () {
+		$('#distanceDisplay').text("Movies from " + sliderValue + "-Present");
+		});
+	submitBtnEl.on("click", function() {
 		localStorage.setItem('name', nameInputEl.val());
-		localStorage.setItem('address', addressInputEl.val());
-		localStorage.setItem('distance', distanceEl.val());
-		window.location.href = "cuisine.html";
+		localStorage.setItem('year', distanceEl.val());
+		localStorage.setItem('genre', genreEl.val());
+		window.location.href = "genre.html";
 	});
 });
 
+	var genreOptions = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "History", "Horror", "Music", "Musical", "Mystery", "News", "Romance", "Sci-Fi", "Short", "Sport", "Thriller", "War", "Western"];
 
-function randomMovie(movies) {
-	var index = Math.floor(Math.random()*movies.results.length)
-	var choosenMovie = movies.results[index].titleText.text
-	console.log(choosenMovie)
-}
 
+	$.each(genreOptions, function(index, option) {
+		$('#genreDropdown').append($('<option>', {
+		value: option,
+		text: option
+		}));
+	});
 movieAPICall();
 
 function movieAPICall() {
