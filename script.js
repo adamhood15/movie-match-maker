@@ -125,4 +125,16 @@ addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Enjoy your movie, ${userName}`);
 });
 
+//Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+// 		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+// 	}
+// };
 
+// fetch('https://streaming-availability.p.rapidapi.com/v2/search/title?title=batman&country=us&show_type=movie&output_language=en', options)
+// 	.then(response => response.json())
+// 	.then(response => console.log(response))
+// 	.catch(err => console.error(err));

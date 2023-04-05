@@ -5,26 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="style" href="./style.css">
     <title>Document</title>
 </head>
-<body class="bg-gradient-to-bl from-red-700 to-red-500">
+<body class="bg-gradient-to-bl from-neutral-800 to-neutral-600">
     <main class="flex flex-col justify-between items-center h-screen">
-        <h1 class="closing-text text-center text-2xl mt-10 mx-10 text-white">Enjoy your movie, person</h1>
+        <h1 class="closing-text text-center text-2xl mt-10 mx-10 mb-3 text-white">Enjoy your movie, person</h1>
         <!-- Can update all these values when we get the API information uploaded -->
-        <div class="flex flex-wrap flex-col movie-card border-2 rounded w-3/4 bg-stone-600">
-            <h2 class="text-lg m-3 text-center text-white">Movie Name 
-                <icon id="rating">*****</icon>
-            </h2>
-            <div class="flex flex-col items-center">
-                <img id="movie-photo" class='h-32 w-32 m-3'src="./assets/images/Placeholder Image.webp">
+        <div class="flex flex-wrap flex-col movie-card border-2 rounded w-3/4 bg-neutral-500 m-5">
+           
+            <div class="flex flex-col items-center m-4">
+                <img id="movie-photo" class="h-auto w-full" src="./assets/images/movie-poster-jaws.jpg">
                 <ul id="movie-info">
-                    <li id="movie-webpage" class="p-2 text-white"><span class="font-bold text-white">Synopsis: </span> Blah blah blah, blah blah blah.</li>
-                    
+                    <h2 class="text-2xl text-white font-bold text-left inline-block">Jaws</h2>
+                    <p class="text-xl text-white text-right inline-block">1964</p>
+                    <li id="synopsis" class="p-2 text-white"><span class="font-bold text-white">
+                        Synopsis: </span> Blah blah blah, blah blah blah blah blah.
+                    </li>
+                    <li class="text-white p-2">
+                        Where to watch:
+                            <li class="text-white p-3">Hulu</li>
+                            <li class="text-white p-3">Netflix</li>
+                            <li class="text-white p-3">HBO Max</li>
+                    </li>
+
                 </ul>
             </div>
         </div>
 
-        <button id='try-again-btn' class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white" type="button">On second thought...</button>
+        <button id='try-again-btn' class="button bg-stone-600 text-white rounded p-2 m-5 border-2 border-solid border-white" type="button">On second thought...</button>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
