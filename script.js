@@ -92,10 +92,10 @@ function movieAPICall() {
 
 		fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}`, optionsd)
 			.then(response => response.json())
-			.then(response => console.log(response))
+			.then(response => randomMovie(response))
 			.catch(err => console.error(err));
 
-
+	}
 //Unsplash API
 
 const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
