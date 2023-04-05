@@ -87,9 +87,9 @@ function movieAPICall() {
 		var genre = 'Horror';
 		var year = '2019';
 
-		fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}`, optionsd)
+		fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=2023`, optionsd)
 			.then(response => response.json())
-			.then(response => randomMovie(response))
+			.then(response => console.log(response))
 			.catch(err => console.error(err));
 
 	}
