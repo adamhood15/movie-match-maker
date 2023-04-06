@@ -15,6 +15,16 @@ const priceEl = $('#price');
 const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
+//Final HTML
+const moviePoster = $('#movie-photo');
+const movieTitle = $('#movie-title');
+const releaseDate = $('#release-date');
+const runtime = $('#runtime');
+const director = $('#director');
+const starring = $('#starring');
+const synopsis = $('#synopsis');
+
+
 var today = dayjs()
 //go button
 $(document).ready(function () {
@@ -47,6 +57,8 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
+	displayMovie(movies.results[index]);
+	getStreaming(choosenMovie);
 }
 
 
@@ -60,39 +72,39 @@ function getStoredItems() {
 }
 
 function movieAPICall(year, genre) {
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
+	// const options = {
+	// 	method: 'GET',
+	// 	headers: {
+	// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+	// 		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+	// 	}
+	// };
 
-	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/genres', options)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
+	// fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/genres', options)
+	// 	.then(response => response.json())
+	// 	.then(response => console.log(response))
+	// 	.catch(err => console.error(err));
 
-	const optionsb = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
+	// const optionsb = {
+	// 	method: 'GET',
+	// 	headers: {
+	// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+	// 		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+	// 	}
+	// };
 
-	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/lists', optionsb)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
+	// fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/lists', optionsb)
+	// 	.then(response => response.json())
+	// 	.then(response => console.log(response))
+	// 	.catch(err => console.error(err));
 
-	const optionsc = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
+	// const optionsc = {
+	// 	method: 'GET',
+	// 	headers: {
+	// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+	// 		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+	// 	}
+	// };
 
 	const optionsd = {
 		method: 'GET',
@@ -103,7 +115,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${today.format('YYYY')}`, optionsd)
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${2022}`, optionsd)
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
@@ -141,16 +153,55 @@ addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Enjoy your movie, ${userName}`);
 });
 
-//Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-// 		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-// 	}
-// };
+// Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
+function getStreaming() {
+	
+	const options = {
+		method: 'GET',
+		headers: {
+			regions: 'US',
+			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+		}
+	};
+	
+	fetch('https://watchmode.p.rapidapi.com/title/tt0848228/sources/', options)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
+		
+}
 
-// fetch('https://streaming-availability.p.rapidapi.com/v2/search/title?title=batman&country=us&show_type=movie&output_language=en', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
+// getStreaming();
+
+// function displayMovie(choosenMovie) {
+
+// 	var movieId = choosenMovie.id;
+
+// 	const options = {
+// 		method: 'GET',
+// 		headers: {
+// 			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+// 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
+// 		}
+// 	};
+	
+// 	fetch(`https://moviesdb5.p.rapidapi.com/om?i=${movieId}`, options)
+// 		.then(response => response.json())
+// 		.then(response => displayMovieDetails(response))
+// 		.catch(err => console.error(err));
+
+// }
+
+function displayMovieDetails (response) {
+	console.log(response);
+	moviePoster.attr('src', response.Poster);
+	movieTitle.text(response.Title);
+	releaseDate.text(response.Year);
+	runtime.text(`Runtime: ${response.Runtime}`);
+	director.text(`Directed By: ${response.Director}`);
+	starring.text(`Starring:  ${response.Actors}`)
+	synopsis.text(`Synopsis: ${response.Plot}`)
+	
+
+} 
