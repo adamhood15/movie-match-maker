@@ -6,26 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="style" href="./style.css">
     <title>Document</title>
 </head>
-<body class="bg-gradient-to-bl from-red-700 to-red-500">
-    <main class="flex flex-col justify-between items-center h-screen">
-        <h1 class="closing-text text-center text-2xl mt-10 mx-10 text-white">Enjoy your movie, person</h1>
+<body class="bg-[#FFD700]">
+    <main class="flex flex-col  justify-between items-center">
         <!-- Can update all these values when we get the API information uploaded -->
-        <div class="flex flex-wrap flex-col movie-card border-2 rounded w-3/4 bg-stone-600">
-            <h2 class="text-lg m-3 text-center text-white">Movie Name 
-                <icon id="rating">*****</icon>
-            </h2>
-            <div class="flex flex-col items-center">
-                <img id="movie-photo" class='h-32 w-32 m-3'src="./assets/images/Placeholder Image.webp">
+        <div class="movie-card flex flex-wrap flex-col items-center mt-10 w-[83%] bg-black shadow-lg h-auto shadow-black
+                    sm:w-[50%]
+                    md:flex-row md: items-start md:w-[75%]
+                    lg:w-[65%]">
+            <img id="movie-photo" class="h-auto w-[100%] md:h-auto lg:h-auto  md:w-1/2 lg:w-[40%]" src="./assets/images/Outsiders.jpeg">
+
+            <div class="flex flex-col items-center m-3
+                        md:h-[70%] md:w-[45%] md:items-start
+                        lg:h-[90%] md:w-[35%]
+                        lg:w-[50%]">
                 <ul id="movie-info">
-                    <li id="movie-webpage" class="p-2 text-white"><span class="font-bold text-white">Synopsis: </span> Blah blah blah, blah blah blah.</li>
-                    
+                    <h2 class="movie-title text-3xl text-[#FDF5E6] font-bold text-left inline-block">The Outsiders</h2>
+                    <p class="date text-2xl text-[#A74F35] text-right inline-block">1964</p>
                 </ul>
+                <ul class="p-2">
+                    <li class="text-[#FDF5E6]">Runtime: 97 minutes</li>
+                    <li class="text-[#FDF5E6]">Directed By: Martin Scorcese</li>
+                    <li class="text-[#FDF5E6]">Starring: Tom Cruise</li>
+                </ul>
+                <p class="block p-5 text-[#FDF5E6]">A group of young teenagers that are part of the greaser gang get into trouble.</p>
+            
+            <div class="items-center md:w-[100%]">
+                <h3 class="text-[#FDF5E6] text-center font-bold underline">Watch This On</h3>
+                <ul class="text-black text-center p-2">
+                    <li class="text-[#FDF5E6] p-1 inline-block">Hulu</li>
+                    <li class="text-[#FDF5E6] p-1 inline-block">Netflix</li>
+                    <li class="text-[#FDF5E6] p-1 inline-block">HBO Max</li>
+            </div>
             </div>
         </div>
 
-        <button id='try-again-btn' class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white" type="button">On second thought...</button>
+        <button id='try-again-btn' class="button bg-black shadow-md shadow-black text-[#FDF5E6] rounded p-2 m-5" type="button">On second thought...</button>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
