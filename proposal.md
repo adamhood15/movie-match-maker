@@ -2,7 +2,7 @@
 
 ## Project Summary 
 
-Restuarant picker for a person visiting a new city.
+Movie picker for people who want to watch a movie but don't want to spend hours searching for a movie to watch.
 ​
 ## Developers
 ​
@@ -28,36 +28,42 @@ Restuarant picker for a person visiting a new city.
 
 ## APIs
 ​
-- Restaurant API: https://rapidapi.com/apidojo/api/travel-advisor 
+- Movies Database: https://moviesdatabase.p.rapidapi.com
+    -This api pulls movie data based on search parameters like genre, and year.
 
-- Cuisine stock images API: https://unsplash.com/developers 
+- Streaming Availability: https://streaming-availability.p.rapidapi.com
+    -This api provides what streaming services you can watch your chosen movie on. 
 ​
 ## MVP (Minimum Viable Product)
 ​
-- Zipcode prompt 
+- Genre Prompt
 
-- Distance prompt
+- Year range slider
 
-- Cuisine prompt
+- Name prompt
 
-- Restaurant
+-Display Movie that was chosen
 
-    - Phone number
+    - Movie Poster
 
-    - Address 
+    - Movie Title
 
-    - Website 
+    - Movie release date
+
+    -Movie rating
+
+    -Available streaming services to watch that movie
 
 - Clean and polished 
 ​
 ## Stretch Goals
 ​
-1. Swipe right/left feature for restaurant choice
+1. Swipe right/left feature for movie choice
 
-2. Map feature
+2. Saves user movies that were selected and can pull data for each one on a separate page
 
-3. Prices 
+3. Displays whether or not the movie is currently in theaters
 
-4. Occasion
+4. More filtering options such as runtime, actors, etc.
 
-5. Geolocation
+5. Shows what theaters you can see the movie at
