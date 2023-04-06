@@ -47,7 +47,7 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
-	// movieStats(choosenMovie)
+	// movieStatsAPICall(choosenMovie)
 }
 
 
@@ -148,7 +148,7 @@ addEventListener("DOMContentLoaded", (event) => {
 });
 // 470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a
 //Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
-function movieStats(title) {
+function movieStatsAPICall(title) {
 const options = {
 	method: 'GET',
 	headers: {
@@ -159,6 +159,16 @@ const options = {
 
 fetch(`https://streaming-availability.p.rapidapi.com/v2/search/title?title=${title}&country=us&show_type=movie&output_language=en`, options)
 	.then(response => response.json())
-	.then(response => console.log(response))
+	.then(response => movieStats(response))
 	.catch(err => console.error(err));
+}
+
+function movieStats (data) {
+	var movieStuff = data[0]
+	movieStuff.title;
+	movieStuff.year
+	movieStuff.overview
+	movieStuff.directors
+	movieStuff.runtime
+console.log(data)
 }
