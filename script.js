@@ -15,7 +15,7 @@ const priceEl = $('#price');
 const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
-var today = dayjs()
+var yearEnd = dayjs().format('YYYY')
 //go button
 $(document).ready(function () {
 	distanceEl.on("input", function () {
@@ -47,6 +47,7 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
+	movieStats(choosenMovie)
 }
 
 
@@ -103,7 +104,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${today.format('YYYY')}`, optionsd)
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${yearEnd-1}`, optionsd)
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
