@@ -15,7 +15,17 @@ const priceEl = $('#price');
 const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
+//Final HTML
+const moviePoster = $('#movie-photo');
+const movieTitle = $('#movie-title');
+const releaseDate = $('#release-date');
+const runtime = $('#runtime');
+const director = $('#director');
+const starring = $('#starring');
+const synopsis = $('#synopsis');
+
 var yearEnd = dayjs().format('YYYY')
+
 //go button
 $(document).ready(function () {
 	distanceEl.on("input", function () {
@@ -47,7 +57,8 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
-	// movieStatsAPICall(choosenMovie)
+	displayMovie(movies.results[index]);
+	getStreaming(choosenMovie);
 }
 
 
@@ -66,39 +77,6 @@ function getStoredItems() {
 }
 
 function movieAPICall(year, genre) {
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
-
-	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/genres', options)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
-
-	const optionsb = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
-
-	fetch('https://moviesdatabase.p.rapidapi.com/titles/utils/lists', optionsb)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err));
-
-	const optionsc = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-		}
-	};
 
 	const optionsd = {
 		method: 'GET',
@@ -115,27 +93,7 @@ function movieAPICall(year, genre) {
 		.catch(err => console.error(err));
 
 }
-//Unsplash API
 
-// const accessKey = 'zMuuOQCazY49v22R_yBjWGu_68ZE3qmVG7V011pysrg';
-
-// // Set up the search query
-// const query = 'Mexican Food';
-// const apiUrl = `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=${accessKey}`;
-
-// // Fetch data from the API endpoint and display the first image
-// // ID 'foodIMG' set for image div endpoint, tested and works, but currently not in HTML
-// fetch(apiUrl)
-// 	.then(response => response.json())
-// 	.then(data => {
-// 		const image = data.results[0];
-// 		const img = document.createElement('img');
-// 		img.src = image.urls.regular;
-// 		img.alt = image.alt_description;
-// 		const foodIMG = document.querySelector('#foodIMG');
-// 		foodIMG.appendChild(img);
-// 	})
-// 	.catch(error => console.log(error));
 
 //local storage for the userInput
 var userName = localStorage.getItem('name', userName);
@@ -146,29 +104,56 @@ localStorage.setItem('name', userName);
 addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Enjoy your movie, ${userName}`);
 });
-// 470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a
-//Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
-function movieStatsAPICall(title) {
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
-		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-	}
-};
 
-fetch(`https://streaming-availability.p.rapidapi.com/v2/search/title?title=${title}&country=us&show_type=movie&output_language=en`, options)
-	.then(response => response.json())
-	.then(response => movieStats(response))
-	.catch(err => console.error(err));
-}
+// Movie API that pulls streaming information (FUTURE DEVELOPMENT)
+// function getStreaming() {
+	
+// 	const options = {
+// 		method: 'GET',
+// 		headers: {
+// 			regions: 'US',
+// 			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+// 			'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+// 		}
+// 	};
+	
+// 	fetch('https://watchmode.p.rapidapi.com/title/tt0848228/sources/', options)
+// 		.then(response => response.json())
+// 		.then(response => console.log(response))
+// 		.catch(err => console.error(err));
+		
+// }
 
-function movieStats (data) {
-	var movieStuff = data[0]
-	movieStuff.title;
-	movieStuff.year
-	movieStuff.overview
-	movieStuff.directors
-	movieStuff.runtime
-console.log(data)
-}
+// getStreaming();
+
+function displayMovie(choosenMovie) {
+
+	var movieId = choosenMovie.id;
+
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
+		}
+	};
+	
+	fetch(`https://moviesdb5.p.rapidapi.com/om?i=${movieId}`, options)
+		.then(response => response.json())
+		.then(response => displayMovieDetails(response))
+		.catch(err => console.error(err));
+
+ }
+
+function displayMovieDetails (response) {
+	console.log(response);
+	moviePoster.attr('src', response.Poster);
+	movieTitle.text(response.Title);
+	releaseDate.text(response.Year);
+	runtime.text(`Runtime: ${response.Runtime}`);
+	director.text(`Directed By: ${response.Director}`);
+	starring.text(`Starring:  ${response.Actors}`)
+	synopsis.text(`Synopsis: ${response.Plot}`)
+	
+
+} 
