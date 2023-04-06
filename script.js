@@ -47,16 +47,21 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
-	movieStats(choosenMovie)
+	// movieStats(choosenMovie)
 }
 
 
 function getStoredItems() {
-	var nameStore = localStorage.getItem('name', nameStore);
 	var yearStore = localStorage.getItem('year', yearStore);
+	console.log(yearStore)
+	console.log(yearEnd)
 	var genreStore = localStorage.getItem('genre', genreStore);
- console.log('yes')
-	movieAPICall(yearStore, genreStore);
+	
+	var min = Math.ceil(yearStore);
+	var max = Math.floor(yearEnd);
+ 	var yearStart = Math.floor(Math.random() * (max - min + 1) + min);
+	console.log(yearStart)
+	movieAPICall(yearStart, genreStore);
 
 }
 
@@ -104,7 +109,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${yearEnd-1}`, optionsd)
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
