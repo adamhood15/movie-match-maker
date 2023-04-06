@@ -15,7 +15,7 @@ const priceEl = $('#price');
 const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
-var today = dayjs()
+var yearEnd = dayjs().format('YYYY')
 //go button
 $(document).ready(function () {
 	distanceEl.on("input", function () {
@@ -47,15 +47,21 @@ function randomMovie(movies) {
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
+	// movieStatsAPICall(choosenMovie)
 }
 
 
 function getStoredItems() {
-	var nameStore = localStorage.getItem('name', nameStore);
 	var yearStore = localStorage.getItem('year', yearStore);
+	console.log(yearStore)
+	console.log(yearEnd)
 	var genreStore = localStorage.getItem('genre', genreStore);
- console.log('yes')
-	movieAPICall(yearStore, genreStore);
+	
+	var min = Math.ceil(yearStore);
+	var max = Math.floor(yearEnd);
+ 	var yearStart = Math.floor(Math.random() * (max - min + 1) + min);
+	console.log(yearStart)
+	movieAPICall(yearStart, genreStore);
 
 }
 
@@ -103,7 +109,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&startYear=${year}&endYear=${today.format('YYYY')}`, optionsd)
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
@@ -140,17 +146,29 @@ localStorage.setItem('name', userName);
 addEventListener("DOMContentLoaded", (event) => {
 	$('.closing-text').text(`Enjoy your movie, ${userName}`);
 });
-
+// 470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a
 //Movie availability API gives IMDB rating, availability on streaming services etc. ONLY 100 calls per day though
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-// 		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-// 	}
-// };
+function movieStatsAPICall(title) {
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
+		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+	}
+};
 
-// fetch('https://streaming-availability.p.rapidapi.com/v2/search/title?title=batman&country=us&show_type=movie&output_language=en', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
+fetch(`https://streaming-availability.p.rapidapi.com/v2/search/title?title=${title}&country=us&show_type=movie&output_language=en`, options)
+	.then(response => response.json())
+	.then(response => movieStats(response))
+	.catch(err => console.error(err));
+}
+
+function movieStats (data) {
+	var movieStuff = data[0]
+	movieStuff.title;
+	movieStuff.year
+	movieStuff.overview
+	movieStuff.directors
+	movieStuff.runtime
+console.log(data)
+}
