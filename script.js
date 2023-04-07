@@ -33,10 +33,14 @@ $(document).ready(function () {
 		$('#distanceDisplay').text("Movies from " + sliderValue + "-Present");
 	});
 	submitBtnEl.on("click", function () {
-		localStorage.setItem('name', nameInputEl.val());
-		localStorage.setItem('year', distanceEl.val());
-		localStorage.setItem('genre', genreEl.val());
-		window.location.href = "final.html";
+		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
+			return
+		} else {
+			localStorage.setItem('name', nameInputEl.val());
+			localStorage.setItem('year', distanceEl.val());
+			localStorage.setItem('genre', genreEl.val());
+			window.location.href = "final.html";
+		}
 	});
 });
 
