@@ -16,6 +16,7 @@ const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
 //Final HTML
+const movieCard = $('.movie-card')
 const moviePoster = $('#movie-photo');
 const movieTitle = $('#movie-title');
 const releaseDate = $('#release-date');
@@ -23,6 +24,7 @@ const runtime = $('#runtime');
 const director = $('#director');
 const starring = $('#starring');
 const synopsis = $('#synopsis');
+const loader = $('#loader');
 
 var streamingArr = [];
 
@@ -143,7 +145,7 @@ function displayMovie(choosenMovie) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '3bca45b849msha8817944ab3e2f1p1f2859jsne7186e0dd3fe',
+			'X-RapidAPI-Key': '9e4220ca51mshc9e84cf2b014f7cp18e04bjsneed22eceee68',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
@@ -168,6 +170,8 @@ function displayMovieDetails (response) {
 		director.text(`Directed By: ${response.Director}`);
 		starring.text(`Starring:  ${response.Actors}`)
 		synopsis.text(`Synopsis: ${response.Plot}`)
+		movieCard.removeClass('hidden')
+		loader.addClass('hidden')
 	}
 
 	
