@@ -52,7 +52,6 @@ getStoredItems();
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
 	displayMovie(movies.results[index]);
-	getStreaming(movies.results[index]);
 }
 
 
@@ -78,7 +77,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) 
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
@@ -96,10 +95,8 @@ addEventListener("DOMContentLoaded", (event) => {
 });
 
 // Movie API that pulls streaming information (FUTURE DEVELOPMENT)
-function getStreaming(choosenMovie) {
+function getStreaming(movieId) {
 	
-	var movieId = choosenMovie.id;
-	movieId = 'tt0848228';
 	const options = {
 		method: 'GET',
 		headers: {
@@ -137,10 +134,11 @@ function displayMovie(choosenMovie) {
  }
 
 function displayMovieDetails (response) {
-
 	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
 		getStoredItems();
 	} else {
+		console.log(response)
+		getStreaming(response.imdbID)
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
 		releaseDate.text(response.Year);
@@ -155,17 +153,31 @@ function displayMovieDetails (response) {
 } 
 
 function streamingOptions(response) {
-	
-	for (i=0; i < response.length; i++) {
-		streamingArr.push(response[i].name)
+	console.log(response);
+
+			streamingArr = [];
+			for (i=0; i < response.length; i++) {
+
+			streamingArr.push(response[i].name)
+
+		}
+
+		let streamingArray = [...new Set(streamingArr)];
+
+		if (streamingArray.length === 0) {
+				$('#watch-this').text("*Oops, looks like there are no streaming options available")
+				$('#watch-this').addClass('no-underline')
+			} else {
+			
+				for (i=0; i < streamingArray.length; i++) {
+
+				var streamingOptions = $('<li>').text(streamingArray[i]);
+				streamingOptions.addClass('text-[#FDF5E6] text-center align-text-top')
+				$('#streaming-list').append(streamingOptions);
+
+			}}
 	}
 
-	let streamingArray = [...new Set(streamingArr)];
-
-	for (i=0; i < streamingArray.length; i++) {
-		var streamingOptions = $('<li>').text(streamingArray[i]);
-		streamingOptions.addClass('text-[#FDF5E6] ')
-		$('#streaming-list').append(streamingOptions);
-	}
-
-}
+$('#try-again-button').on('click', function() {
+	window.location.reload();
+});
