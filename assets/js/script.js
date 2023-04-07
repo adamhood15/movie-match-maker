@@ -51,11 +51,6 @@ getStoredItems();
 
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
-	console.log(movies)
-	console.log(index)
-	var choosenMovie = movies.results[index].titleText.text
-	console.log(choosenMovie)
-	console.log(movies.results[index])
 	displayMovie(movies.results[index]);
 	getStreaming(movies.results[index]);
 }
@@ -63,20 +58,17 @@ function randomMovie(movies) {
 
 function getStoredItems() {
 	var yearStore = localStorage.getItem('year', yearStore);
-	console.log(yearStore)
-	console.log(yearEnd)
 	var genreStore = localStorage.getItem('genre', genreStore);
 	
 	var min = Math.ceil(yearStore);
 	var max = Math.floor(yearEnd);
  	var yearStart = Math.floor(Math.random() * (max - min + 1) + min);
-	console.log(yearStart)
 	movieAPICall(yearStart, genreStore);
 
 }
 
 function movieAPICall(year, genre) {
-Promises = [];
+
 	const optionsd = {
 		method: 'GET',
 		headers: {
@@ -92,7 +84,6 @@ Promises = [];
 		.catch(err => console.error(err));
 
 }
-
 
 //local storage for the userInput
 var userName = localStorage.getItem('name', userName);
@@ -129,8 +120,7 @@ function getStreaming(choosenMovie) {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
-	console.log(movieId)
-// movieId = tt11598412;
+
 	const options = {
 		method: 'GET',
 		headers: {
@@ -147,11 +137,10 @@ function displayMovie(choosenMovie) {
  }
 
 function displayMovieDetails (response) {
-	console.log(response);
+
 	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
 		getStoredItems();
 	} else {
-		console.log(response)
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
 		releaseDate.text(response.Year);
@@ -163,30 +152,20 @@ function displayMovieDetails (response) {
 		loader.addClass('hidden')
 	}
 
-	
-
 } 
 
 function streamingOptions(response) {
-	console.log(response);
 	
 	for (i=0; i < response.length; i++) {
-
 		streamingArr.push(response[i].name)
-
 	}
 
-	console.log(streamingArr);
 	let streamingArray = [...new Set(streamingArr)];
-	console.log(streamingArray);
 
 	for (i=0; i < streamingArray.length; i++) {
-
 		var streamingOptions = $('<li>').text(streamingArray[i]);
 		streamingOptions.addClass('text-[#FDF5E6] ')
 		$('#streaming-list').append(streamingOptions);
-
-
 	}
 
 }
