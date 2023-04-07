@@ -30,7 +30,7 @@ var yearEnd = dayjs().format('YYYY')
 $(document).ready(function () {
 	distanceEl.on("input", function () {
 		var sliderValue = $(this).val();
-		$('#distanceDisplay').text("Movies from " + sliderValue + "-Present");
+		$('#distanceDisplay').text(sliderValue + "-PRESENT");
 	});
 	submitBtnEl.on("click", function () {
 		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
