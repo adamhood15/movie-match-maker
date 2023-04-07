@@ -58,7 +58,7 @@ function randomMovie(movies) {
 	console.log(choosenMovie)
 	console.log(movies.results[index])
 	displayMovie(movies.results[index]);
-	getStreaming(choosenMovie);
+	// getStreaming(choosenMovie);
 }
 
 
@@ -87,7 +87,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&list=top_boxoffice_200&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
@@ -129,11 +129,11 @@ addEventListener("DOMContentLoaded", (event) => {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
-
+// movieId = tt11598412;
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
@@ -147,13 +147,20 @@ function displayMovie(choosenMovie) {
 
 function displayMovieDetails (response) {
 	console.log(response);
-	moviePoster.attr('src', response.Poster);
-	movieTitle.text(response.Title);
-	releaseDate.text(response.Year);
-	runtime.text(`Runtime: ${response.Runtime}`);
-	director.text(`Directed By: ${response.Director}`);
-	starring.text(`Starring:  ${response.Actors}`)
-	synopsis.text(`Synopsis: ${response.Plot}`)
+	if ((response.Poster || response.Title || response.Year || response.Runtime || response.Director || response.Actors || response.Plot) === 'N/A' ){
+		console.log(response)
+		console.log("missing")
+		// getStoredItems();
+	} else {
+		moviePoster.attr('src', response.Poster);
+		movieTitle.text(response.Title);
+		releaseDate.text(response.Year);
+		runtime.text(`Runtime: ${response.Runtime}`);
+		director.text(`Directed By: ${response.Director}`);
+		starring.text(`Starring:  ${response.Actors}`)
+		synopsis.text(`Synopsis: ${response.Plot}`)
+	}
+
 	
 
 } 
