@@ -24,6 +24,8 @@ const director = $('#director');
 const starring = $('#starring');
 const synopsis = $('#synopsis');
 
+var streamingArr = [];
+
 var yearEnd = dayjs().format('YYYY')
 
 //go button
@@ -64,7 +66,7 @@ function randomMovie(movies) {
 	console.log(choosenMovie)
 	console.log(movies.results[index])
 	displayMovie(movies.results[index]);
-	// getStreaming(choosenMovie);
+	getStreaming(movies.results[index]);
 }
 
 
@@ -87,7 +89,7 @@ Promises = [];
 	const optionsd = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
 			'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
 		}
 	};
@@ -112,25 +114,26 @@ addEventListener("DOMContentLoaded", (event) => {
 });
 
 // Movie API that pulls streaming information (FUTURE DEVELOPMENT)
-// function getStreaming() {
+function getStreaming(choosenMovie) {
 	
-// 	const options = {
-// 		method: 'GET',
-// 		headers: {
-// 			regions: 'US',
-// 			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
-// 			'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
-// 		}
-// 	};
+	var movieId = choosenMovie.id;
+	movieId = 'tt0848228';
+	const options = {
+		method: 'GET',
+		headers: {
+			regions: 'US',
+			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+		}
+	};
 	
-// 	fetch('https://watchmode.p.rapidapi.com/title/tt0848228/sources/', options)
-// 		.then(response => response.json())
-// 		.then(response => console.log(response))
-// 		.catch(err => console.error(err));
+	fetch(`https://watchmode.p.rapidapi.com/title/${movieId}/sources/`, options)
+		.then(response => response.json())
+		.then(response => streamingOptions(response))
+		.catch(err => console.error(err));
 		
-// }
+}
 
-// getStreaming();
 
 function displayMovie(choosenMovie) {
 
@@ -170,3 +173,27 @@ function displayMovieDetails (response) {
 	
 
 } 
+
+function streamingOptions(response) {
+	console.log(response);
+	
+	for (i=0; i < response.length; i++) {
+
+		streamingArr.push(response[i].name)
+
+	}
+
+	console.log(streamingArr);
+	let streamingArray = [...new Set(streamingArr)];
+	console.log(streamingArray);
+
+	for (i=0; i < streamingArray.length; i++) {
+
+		var streamingOptions = $('<li>').text(streamingArray[i]);
+		streamingOptions.addClass('text-[#FDF5E6] ')
+		$('#streaming-list').append(streamingOptions);
+
+
+	}
+
+}
