@@ -32,13 +32,17 @@ var yearEnd = dayjs().format('YYYY')
 $(document).ready(function () {
 	distanceEl.on("input", function () {
 		var sliderValue = $(this).val();
-		$('#distanceDisplay').text("Movies from " + sliderValue + "-Present");
+		$('#distanceDisplay').text(sliderValue + "-PRESENT");
 	});
 	submitBtnEl.on("click", function () {
-		localStorage.setItem('name', nameInputEl.val());
-		localStorage.setItem('year', distanceEl.val());
-		localStorage.setItem('genre', genreEl.val());
-		window.location.href = "final.html";
+		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
+			return
+		} else {
+			localStorage.setItem('name', nameInputEl.val());
+			localStorage.setItem('year', distanceEl.val());
+			localStorage.setItem('genre', genreEl.val());
+			window.location.href = "final.html";
+		}
 	});
 });
 
@@ -56,6 +60,8 @@ getStoredItems();
 
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
+	console.log(movies)
+	console.log(index)
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
@@ -79,7 +85,7 @@ function getStoredItems() {
 }
 
 function movieAPICall(year, genre) {
-
+Promises = [];
 	const optionsd = {
 		method: 'GET',
 		headers: {
@@ -133,7 +139,8 @@ function getStreaming(choosenMovie) {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
-
+	console.log(movieId)
+// movieId = tt11598412;
 	const options = {
 		method: 'GET',
 		headers: {
@@ -150,13 +157,20 @@ function displayMovie(choosenMovie) {
  }
 
 function displayMovieDetails (response) {
-	moviePoster.attr('src', response.Poster);
-	movieTitle.text(response.Title);
-	releaseDate.text(response.Year);
-	runtime.text(`Runtime: ${response.Runtime}`);
-	director.text(`Directed By: ${response.Director}`);
-	starring.text(`Starring:  ${response.Actors}`)
-	synopsis.text(`Synopsis: ${response.Plot}`)
+	console.log(response);
+	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
+		getStoredItems();
+	} else {
+		console.log(response)
+		moviePoster.attr('src', response.Poster);
+		movieTitle.text(response.Title);
+		releaseDate.text(response.Year);
+		runtime.text(`Runtime: ${response.Runtime}`);
+		director.text(`Directed By: ${response.Director}`);
+		starring.text(`Starring:  ${response.Actors}`)
+		synopsis.text(`Synopsis: ${response.Plot}`)
+	}
+
 	
 
 } 
