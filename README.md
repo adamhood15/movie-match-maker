@@ -21,6 +21,13 @@ APIs:
 - MoviesDB: https://rapidapi.com/standingapi-standingapi-default/api/moviesdb5/ 
 - Streaming Availability: https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability 
 
+## Future Development
+
+- User can select multiple genres by using a swipe funtion (right for yes and left for no).
+- User can swipe through movies if the selected is not a good fit.
+- Movies liked are stored for the user to browse later.
+- Streaming options are linked to their respective pages.
+
 ## Creators
 
 Adam Hood, Claire Alverson, and Kyle Curry
