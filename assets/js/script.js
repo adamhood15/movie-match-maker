@@ -19,7 +19,7 @@ var streamingArr = [];
 
 var yearEnd = dayjs().format('YYYY')
 
-//go button
+// Go button
 $(document).ready(function () {
 	yearEl.on("input", function () {
 		var sliderValue = $(this).val();
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 var genreOptions = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "History", "Horror", "Music", "Musical", "Mystery", "News", "Romance", "Sci-Fi", "Short", "Sport", "Thriller", "War", "Western"];
 
-
+// Genre dropdown select
 $.each(genreOptions, function (index, option) {
 	$('#genreDropdown').append($('<option>', {
 		value: option,
@@ -49,23 +49,25 @@ $.each(genreOptions, function (index, option) {
 
 getStoredItems();
 
+// Randomizes movie database call data
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
 	displayMovie(movies.results[index]);
 }
 
-
+// Randomizes year and passes that year and selected genre to movie database
 function getStoredItems() {
 	var yearStore = localStorage.getItem('year', yearStore);
 	var genreStore = localStorage.getItem('genre', genreStore);
 	
 	var min = Math.ceil(yearStore);
 	var max = Math.floor(yearEnd);
- 	var yearStart = Math.floor(Math.random() * (max - min + 1) + min);
-	movieAPICall(yearStart, genreStore);
+ 	var yearRandom = Math.floor(Math.random() * (max - min + 1) + min);
+	movieAPICall(yearRandom, genreStore);
 
 }
 
+// Movie Database API - Array of movies
 function movieAPICall(year, genre) {
 
 	const optionsd = {
@@ -84,17 +86,11 @@ function movieAPICall(year, genre) {
 
 }
 
-//local storage for the userInput
+//Local storage for the user name input
 var userName = localStorage.getItem('name', userName);
-
 localStorage.setItem('name', userName);
 
-//Displays the users name on the restaurant HTML page
-addEventListener("DOMContentLoaded", (event) => {
-	$('.closing-text').text(`Enjoy your movie, ${userName}`);
-});
-
-// Movie API that pulls streaming information (FUTURE DEVELOPMENT)
+// Streaming Availability API - Streaming information
 function getStreaming(movieId) {
 	
 	const options = {
@@ -113,7 +109,7 @@ function getStreaming(movieId) {
 		
 }
 
-
+// MovieDB API - Information about a particular movie
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
@@ -133,11 +129,11 @@ function displayMovie(choosenMovie) {
 
  }
 
+ // Adds selected movie information to final HTML page
 function displayMovieDetails (response) {
 	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
 		getStoredItems();
 	} else {
-		console.log(response)
 		getStreaming(response.imdbID)
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
@@ -152,8 +148,8 @@ function displayMovieDetails (response) {
 
 } 
 
+// Finds streaming options available to chosen movie
 function streamingOptions(response) {
-	console.log(response);
 
 			streamingArr = [];
 			for (i=0; i < response.length; i++) {
