@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="style" href="./assets/css/style.css">
     <title>Document</title>
 </head>
+
 <body class="bg-[#FFD700]">
     <main class="flex flex-col  justify-between items-center">
         <!-- Can update all these values when we get the API information uploaded -->
@@ -17,7 +19,7 @@
                     sm:w-[50%]
                     md:flex-row md: items-start md:w-[75%]
                     lg:w-[65%]">
-            <img id="movie-photo" class="h-auto w-[100%] md:h-auto lg:h-auto  md:w-1/2 lg:w-[40%]" >
+            <img id="movie-photo" class="h-auto w-[100%] md:h-auto lg:h-auto  md:w-1/2 lg:w-[40%]">
 
             <div class="flex flex-col items-center m-3
                         md:h-[70%] md:w-[45%] md:items-start
@@ -33,28 +35,27 @@
                     <li id='starring' class="text-[#FDF5E6]"></li>
                 </ul>
                 <p id='synopsis' class="block p-5 text-[#FDF5E6]"></p>
-            
-            <div class="items-center md:w-[100%]">
-                <h3 class="text-[#FDF5E6] text-center font-bold underline"></h3>
-                <ul id='streaming-list' class="flex flex-wrap place-content-around text-center p-2">
-                </ul>
-            </div>
+
+                <div class="items-center md:w-[100%]">
+                    <h3 class="text-[#FDF5E6] text-center font-bold underline"></h3>
+                    <ul id='streaming-list' class="flex flex-wrap place-content-around text-center p-2">
+                    </ul>
+                </div>
             </div>
         </div>
         <div id="loader"
-  class="absolute right-1/2 bottom-1/2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-  role="status">
-  <span
-    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-    >Loading...</span
-  >
-</div>
+            class="absolute right-1/2 bottom-1/2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status">
+            <span
+                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+        </div>
         <!-- <button id='try-again-btn' class="button bg-black shadow-md shadow-black text-[#FDF5E6] rounded p-2 m-5" type="button">On second thought...</button> -->
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
