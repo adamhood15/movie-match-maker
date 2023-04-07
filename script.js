@@ -134,7 +134,6 @@ function getStreaming(choosenMovie) {
 		
 }
 
-// getStreaming();
 
 function displayMovie(choosenMovie) {
 
@@ -144,7 +143,7 @@ function displayMovie(choosenMovie) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
+			'X-RapidAPI-Key': '3bca45b849msha8817944ab3e2f1p1f2859jsne7186e0dd3fe',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
@@ -190,9 +189,11 @@ function streamingOptions(response) {
 
 	for (i=0; i < streamingArray.length; i++) {
 
-		var streamingItem = $('#streaming-list').add('li').text(streamingArray[i]);
-		$('#streaming-list').append(streamingItem);
-		
+		var streamingOptions = $('<li>').text(streamingArray[i]);
+		streamingOptions.addClass('text-[#FDF5E6] ')
+		$('#streaming-list').append(streamingOptions);
+
+
 	}
 
 }
