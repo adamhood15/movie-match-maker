@@ -26,10 +26,9 @@ $(document).ready(function () {
 		$('#yearDisplay').text(sliderValue + "-PRESENT");
 	});
 	submitBtnEl.on("click", function () {
-		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
+		if ((genreEl.val() === '')) {
 			return
 		} else {
-			localStorage.setItem('name', nameInputEl.val());
 			localStorage.setItem('year', yearEl.val());
 			localStorage.setItem('genre', genreEl.val());
 			window.location.href = "final.html";
