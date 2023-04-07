@@ -33,10 +33,14 @@ $(document).ready(function () {
 		$('#distanceDisplay').text(sliderValue + "-PRESENT");
 	});
 	submitBtnEl.on("click", function () {
-		localStorage.setItem('name', nameInputEl.val());
-		localStorage.setItem('year', distanceEl.val());
-		localStorage.setItem('genre', genreEl.val());
-		window.location.href = "final.html";
+		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
+			return
+		} else {
+			localStorage.setItem('name', nameInputEl.val());
+			localStorage.setItem('year', distanceEl.val());
+			localStorage.setItem('genre', genreEl.val());
+			window.location.href = "final.html";
+		}
 	});
 });
 
@@ -54,11 +58,13 @@ getStoredItems();
 
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
+	console.log(movies)
+	console.log(index)
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
 	displayMovie(movies.results[index]);
-	getStreaming(choosenMovie);
+	// getStreaming(choosenMovie);
 }
 
 
@@ -77,7 +83,7 @@ function getStoredItems() {
 }
 
 function movieAPICall(year, genre) {
-
+Promises = [];
 	const optionsd = {
 		method: 'GET',
 		headers: {
@@ -129,11 +135,12 @@ addEventListener("DOMContentLoaded", (event) => {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
-
+	console.log(movieId)
+// movieId = tt11598412;
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '470bbc37cbmsh159b75e4fb9ceb9p1dd3fbjsn904a4308001a',
+			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
@@ -147,13 +154,19 @@ function displayMovie(choosenMovie) {
 
 function displayMovieDetails (response) {
 	console.log(response);
-	moviePoster.attr('src', response.Poster);
-	movieTitle.text(response.Title);
-	releaseDate.text(response.Year);
-	runtime.text(`Runtime: ${response.Runtime}`);
-	director.text(`Directed By: ${response.Director}`);
-	starring.text(`Starring:  ${response.Actors}`)
-	synopsis.text(`Synopsis: ${response.Plot}`)
+	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
+		getStoredItems();
+	} else {
+		console.log(response)
+		moviePoster.attr('src', response.Poster);
+		movieTitle.text(response.Title);
+		releaseDate.text(response.Year);
+		runtime.text(`Runtime: ${response.Runtime}`);
+		director.text(`Directed By: ${response.Director}`);
+		starring.text(`Starring:  ${response.Actors}`)
+		synopsis.text(`Synopsis: ${response.Plot}`)
+	}
+
 	
 
 } 
