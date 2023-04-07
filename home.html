@@ -7,35 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="reset.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Homepage</title>
+    <title>MOVIE MATCH MAKER</title>
+    <link rel="icon" href="./assets/images/Popcorn Emoji.png" type="image/x-icon">
 </head>
 
-<body class="bg-cover flex items-center h-screen justify-center"
-    style="background-image: url('./assets/images/movieseats.jpg')">
-    <div class="bg-stone-600 bg-opacity-50 border-2 rounded w-3/4">
+<body class="bg-cover bg-[#FFD700] flex items-center h-screen justify-center ">
+    <div class="bg-black shadow-lg shadow-black w-[300px]">
+        <div class="flex justify-center">
+            <img class=" h-[180px] w-[180px] mt-[-70px]" src="./assets/images/Popcorn Emoji.png">
+        </div>
         <div>
-            <H1 class="text-center text-3xl mt-10 text-white">Movie Match Maker</H1>
-            <H2 class="text-center text-xl mt-10 text-white">Find your perfect film.</H2>
+            <H1 class="text-center text-3xl mb-10 text-[#FDF5E6] font-bold">MOVIE MATCH MAKER</H1>
         </div>
 
         <div class="flex flex-col space-y-3 text-center mt-10">
             <div>
-                <input id="name" class="bg-stone-600 text-white rounded p-2 border-2 border-solid border-white"
-                    type="text" placeholder="Enter Name"></input>
+                <input id="name" class="bg-[#FDF5E6] text-center text-black w-2/3 h-10 shadow-black shadow-inner"
+                    type="text" placeholder="YOUR NAME"></input>
             </div>
-            <div>
-                <select id="genreDropdown">
-                    <option value="">Select a genre</option>
+            <div class="flex justify-center">
+                <select class="w-2/3 h-10 mb-5 bg-[#FDF5E6] shadow-black shadow-inner" id="genreDropdown">
+                    <option class="text-center" value="">GENRE</option>
                 </select>
             </div>
-            <div>
-                <input type="range" min="1950" max="2023" value="1986" class="" id="distanceSlider">
+            <div style="width:300px;">
+                <input type="range" min="1950" max="2023" value="1986" class="accent-[#FDF5E6] h-2 w-full>" id="distanceSlider">
             </div>
-            <label for="distanceSlider" id="distanceDisplay" class="mt-10 text-white">Movies from 1986-Present</label>
+                <label for="distanceSlider" id="distanceDisplay" class="mt-10 text-[#FDF5E6]">1986-PRESENT</label>
             <div>
                 <button id="submit"
-                    class="button bg-stone-600 text-white rounded p-2 mb-8 border-2 border-solid border-white"
-                    type="button">Go</button>
+                    class="button bg-[#A74F35] text-white p-2 my-5 w-[60px]"
+                    type="button">GO</button>
+            </div>
+            <div>
+                <H2 class="text-center text-l text-[#FDF5E6] mb-10">WE PICK THE <span class="text-[#A74F35]">MOVIE</span> SO YOU<BR> DON'T HAVE TO</H2>
             </div>
         </div>
 
