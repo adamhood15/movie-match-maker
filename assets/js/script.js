@@ -23,6 +23,7 @@ const runtime = $('#runtime');
 const director = $('#director');
 const starring = $('#starring');
 const synopsis = $('#synopsis');
+const loader = $('#loader');
 
 var streamingArr = [];
 
@@ -143,7 +144,7 @@ function displayMovie(choosenMovie) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '3bca45b849msha8817944ab3e2f1p1f2859jsne7186e0dd3fe',
+			'X-RapidAPI-Key': '340b5afe51msh9cbcd179dcfe229p1431edjsn47853944768f',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
@@ -168,6 +169,7 @@ function displayMovieDetails (response) {
 		director.text(`Directed By: ${response.Director}`);
 		starring.text(`Starring:  ${response.Actors}`)
 		synopsis.text(`Synopsis: ${response.Plot}`)
+		loader.addClass('hidden')
 	}
 
 	

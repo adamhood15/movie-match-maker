@@ -12,6 +12,14 @@
 <body class="bg-[#FFD700]">
     <main class="flex flex-col  justify-between items-center">
         <!-- Can update all these values when we get the API information uploaded -->
+        <div id="loader"
+  class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+  role="status">
+  <span
+    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span
+  >
+</div>
         <div class="movie-card flex flex-wrap flex-col items-center mt-10 w-[83%] bg-black shadow-lg h-auto shadow-black
                     sm:w-[50%]
                     md:flex-row md: items-start md:w-[75%]
