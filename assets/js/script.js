@@ -62,26 +62,19 @@ getStoredItems();
 
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
-	console.log(movies)
-	console.log(index)
 	var choosenMovie = movies.results[index].titleText.text
-	console.log(choosenMovie)
 	console.log(movies.results[index])
 	displayMovie(movies.results[index]);
-	getStreaming(movies.results[index]);
 }
 
 
 function getStoredItems() {
 	var yearStore = localStorage.getItem('year', yearStore);
-	console.log(yearStore)
-	console.log(yearEnd)
 	var genreStore = localStorage.getItem('genre', genreStore);
 	
 	var min = Math.ceil(yearStore);
 	var max = Math.floor(yearEnd);
  	var yearStart = Math.floor(Math.random() * (max - min + 1) + min);
-	console.log(yearStart)
 	movieAPICall(yearStart, genreStore);
 
 }
@@ -116,10 +109,8 @@ addEventListener("DOMContentLoaded", (event) => {
 });
 
 // Movie API that pulls streaming information (FUTURE DEVELOPMENT)
-function getStreaming(choosenMovie) {
+function getStreaming(movieId) {
 	
-	var movieId = choosenMovie.id;
-	movieId = 'tt0848228';
 	const options = {
 		method: 'GET',
 		headers: {
@@ -140,7 +131,6 @@ function getStreaming(choosenMovie) {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
-	console.log(movieId)
 // movieId = tt11598412;
 	const options = {
 		method: 'GET',
@@ -158,11 +148,11 @@ function displayMovie(choosenMovie) {
  }
 
 function displayMovieDetails (response) {
-	console.log(response);
 	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
 		getStoredItems();
 	} else {
 		console.log(response)
+		getStreaming(response.imdbID)
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
 		releaseDate.text(response.Year);
@@ -180,24 +170,30 @@ function displayMovieDetails (response) {
 
 function streamingOptions(response) {
 	console.log(response);
-	
-	for (i=0; i < response.length; i++) {
 
-		streamingArr.push(response[i].name)
+			streamingArr = [];
+			for (i=0; i < response.length; i++) {
 
+			streamingArr.push(response[i].name)
+
+		}
+
+		let streamingArray = [...new Set(streamingArr)];
+
+		if (streamingArray.length === 0) {
+				$('#watch-this').text("*Oops, looks like there are no streaming options available")
+				$('#watch-this').addClass('no-underline')
+			} else {
+			
+				for (i=0; i < streamingArray.length; i++) {
+
+				var streamingOptions = $('<li>').text(streamingArray[i]);
+				streamingOptions.addClass('text-[#FDF5E6] text-center align-text-top')
+				$('#streaming-list').append(streamingOptions);
+
+			}}
 	}
 
-	console.log(streamingArr);
-	let streamingArray = [...new Set(streamingArr)];
-	console.log(streamingArray);
-
-	for (i=0; i < streamingArray.length; i++) {
-
-		var streamingOptions = $('<li>').text(streamingArray[i]);
-		streamingOptions.addClass('text-[#FDF5E6] ')
-		$('#streaming-list').append(streamingOptions);
-
-
-	}
-
-}
+$('#try-again-button').on('click', function() {
+	window.location.reload();
+});
