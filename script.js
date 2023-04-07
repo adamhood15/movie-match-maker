@@ -54,6 +54,8 @@ getStoredItems();
 
 function randomMovie(movies) {
 	var index = Math.floor(Math.random() * movies.results.length)
+	console.log(movies)
+	console.log(index)
 	var choosenMovie = movies.results[index].titleText.text
 	console.log(choosenMovie)
 	console.log(movies.results[index])
@@ -77,7 +79,7 @@ function getStoredItems() {
 }
 
 function movieAPICall(year, genre) {
-
+Promises = [];
 	const optionsd = {
 		method: 'GET',
 		headers: {
@@ -87,7 +89,7 @@ function movieAPICall(year, genre) {
 	};
 
 
-	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&list=top_boxoffice_200&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
+	fetch(`https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=${genre}&year=${year}`, optionsd) // &endYear=${yearEnd-1}
 		.then(response => response.json())
 		.then(response => randomMovie(response))
 		.catch(err => console.error(err));
@@ -129,6 +131,7 @@ addEventListener("DOMContentLoaded", (event) => {
 function displayMovie(choosenMovie) {
 
 	var movieId = choosenMovie.id;
+	console.log(movieId)
 // movieId = tt11598412;
 	const options = {
 		method: 'GET',
@@ -147,10 +150,10 @@ function displayMovie(choosenMovie) {
 
 function displayMovieDetails (response) {
 	console.log(response);
-	if ((response.Poster || response.Title || response.Year || response.Runtime || response.Director || response.Actors || response.Plot) === 'N/A' ){
+	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
 		console.log(response)
 		console.log("missing")
-		// getStoredItems();
+		getStoredItems();
 	} else {
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
