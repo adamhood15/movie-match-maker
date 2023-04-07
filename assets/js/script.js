@@ -1,18 +1,7 @@
-// home html
+// Index html
 const nameInputEl = $('#name');
-const addressInputEl = $('#address');
 const submitBtnEl = $('#submit');
-const distanceEl = $('#distanceSlider')
-
-// resturant html
-const restaurantPhotoEl = $('#restaurant-photo');
-const restaurantInfoEl = $('#restaurant-info');
-const restaurantWebpageEl = $('#restaurant-webpage');
-const restaurantAddressEl = $('#restaurant-address');
-const restaurantPhoneNumEl = $('#restaurant-phone-num');
-const tryAgainBtnEl = $('#try-again-btn');
-const priceEl = $('#price');
-const ratingEl = $('#rating');
+const yearEl = $('#yearSlider')
 const genreEl = $('#genreDropdown');
 
 //Final HTML
@@ -32,16 +21,16 @@ var yearEnd = dayjs().format('YYYY')
 
 //go button
 $(document).ready(function () {
-	distanceEl.on("input", function () {
+	yearEl.on("input", function () {
 		var sliderValue = $(this).val();
-		$('#distanceDisplay').text(sliderValue + "-PRESENT");
+		$('#yearDisplay').text(sliderValue + "-PRESENT");
 	});
 	submitBtnEl.on("click", function () {
 		if ((nameInputEl.val() === '') || (genreEl.val() === '')) {
 			return
 		} else {
 			localStorage.setItem('name', nameInputEl.val());
-			localStorage.setItem('year', distanceEl.val());
+			localStorage.setItem('year', yearEl.val());
 			localStorage.setItem('genre', genreEl.val());
 			window.location.href = "final.html";
 		}
@@ -145,7 +134,7 @@ function displayMovie(choosenMovie) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '9e4220ca51mshc9e84cf2b014f7cp18e04bjsneed22eceee68',
+			'X-RapidAPI-Key': 'bad0045a2bmsh9b343dc823377f1p1ec393jsnedd5b16a4bce',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
