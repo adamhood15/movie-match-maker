@@ -16,6 +16,7 @@ const ratingEl = $('#rating');
 const genreEl = $('#genreDropdown');
 
 //Final HTML
+const movieCard = $('.movie-card')
 const moviePoster = $('#movie-photo');
 const movieTitle = $('#movie-title');
 const releaseDate = $('#release-date');
@@ -169,6 +170,7 @@ function displayMovieDetails (response) {
 		director.text(`Directed By: ${response.Director}`);
 		starring.text(`Starring:  ${response.Actors}`)
 		synopsis.text(`Synopsis: ${response.Plot}`)
+		movieCard.removeClass('hidden')
 		loader.addClass('hidden')
 	}
 
