@@ -155,10 +155,9 @@ function displayMovie(choosenMovie) {
 function displayMovieDetails (response) {
 	console.log(response);
 	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
-		console.log(response)
-		console.log("missing")
 		getStoredItems();
 	} else {
+		console.log(response)
 		moviePoster.attr('src', response.Poster);
 		movieTitle.text(response.Title);
 		releaseDate.text(response.Year);
