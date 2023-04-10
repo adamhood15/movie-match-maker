@@ -116,7 +116,7 @@ function displayMovie(choosenMovie) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '5bf6772163msh16d715bf1eeee6fp11475ejsn22742b3ac088',
+			'X-RapidAPI-Key': '73bb9373a6msheb26ed1453586b6p14d4e6jsnc6b4a89a91e1',
 			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
 		}
 	};
