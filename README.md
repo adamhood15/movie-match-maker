@@ -6,9 +6,9 @@ This is an application to select a movie for someone.The user inputs their name,
 
 ## Usage
 
-Webpage: https://adamhood15.github.io/restaurant-picker/
+Webpage: https://adamhood15.github.io/movie-match-maker/
 
-![Start Page Screenshot](assets/images/screenshot_1.jpeg)
+![Start Page Screenshot](assets/images/screenshot_1.JPG)
 
 ![Final Page Screenshot](assets/images/screenshot_2.jpeg)
 
