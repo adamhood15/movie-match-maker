@@ -109,43 +109,53 @@ function getStreaming(movieId) {
 }
 
 // MovieDB API - Information about a particular movie
-function displayMovie(choosenMovie) {
 
+function displayMovie(choosenMovie) {
+		
 	var movieId = choosenMovie.id;
+
+	const options2 = {
+		method: 'GET',
+		headers: {
+		  accept: 'application/json',
+		  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MWY4N2M0MjJmZTZmZmM1MGRhNWIxOGJjNjM4ODhlZSIsInN1YiI6IjY0ODIyNGYzZTI3MjYwMDEwNzIwZjVmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IYiNnOE5fG1AoDDgyj10vswpWqkoegXIEPs7RAAVKHQ'
+		}
+	  };
+	  
+	  fetch('https://api.themoviedb.org/3/configuration', options2)
+		.then(response => response.json())
+		.then(response => console.log(response))
+		.catch(err => console.error(err));
 
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '73bb9373a6msheb26ed1453586b6p14d4e6jsnc6b4a89a91e1',
-			'X-RapidAPI-Host': 'moviesdb5.p.rapidapi.com'
+		  accept: 'application/json',
+		  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MWY4N2M0MjJmZTZmZmM1MGRhNWIxOGJjNjM4ODhlZSIsInN1YiI6IjY0ODIyNGYzZTI3MjYwMDEwNzIwZjVmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IYiNnOE5fG1AoDDgyj10vswpWqkoegXIEPs7RAAVKHQ'
 		}
-	};
-	
-	fetch(`https://moviesdb5.p.rapidapi.com/om?i=${movieId}`, options)
+	  };
+	  
+	  fetch(`https://api.themoviedb.org/3/movie/${movieId}?append_to_response=images%2Cwatchproviders%2Ccredits&language=en-US`, options)
 		.then(response => response.json())
 		.then(response => displayMovieDetails(response))
 		.catch(err => console.error(err));
-
- }
-
- // Adds selected movie information to final HTML page
-function displayMovieDetails (response) {
-	if ((response.Poster === 'N/A')|| (response.Title === 'N/A') || (response.Year === 'N/A') || (response.Runtime === 'N/A') || (response.Director === 'N/A') || (response.Actors === 'N/A') || (response.Plot === 'N/A')){
-		getStoredItems();
-	} else {
-		getStreaming(response.imdbID)
-		moviePoster.attr('src', response.Poster);
-		movieTitle.text(response.Title);
-		releaseDate.text(response.Year);
-		runtime.text(`Runtime: ${response.Runtime}`);
-		director.text(`Directed By: ${response.Director}`);
-		starring.text(`Starring:  ${response.Actors}`)
-		synopsis.text(`Synopsis: ${response.Plot}`)
-		movieCard.removeClass('hidden')
-		loader.addClass('hidden')
 	}
 
-} 
+// Adds selected movie information to final HTML page
+function displayMovieDetails (response) {
+
+	getStreaming(response.imdb_id);
+	movieTitle.text(response.title);
+	releaseDate.text(response.release_date);
+	moviePoster.attr('src', `http://image.tmdb.org/t/p/original${response.poster_path}`);
+	runtime.text(`Runtime: ${response.runtime} minutes`);
+	synopsis.text(`Synopsis: ${response.overview}`);
+	starring.text(`Starring: ${response.credits.cast[0].name}, ${response.credits.cast[1].name}, ${response.credits.cast[2].name}`);
+	director.text(`Directed By: ${response.credits.crew[0].name}`);
+	movieCard.removeClass('hidden')
+	loader.addClass('hidden')
+
+}; 
 
 // Finds streaming options available to chosen movie
 function streamingOptions(response) {
